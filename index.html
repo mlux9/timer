@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head></head>
+		<body>
+			<canvas id="timerCanvas"></canvas>
+			<script src="timer.js"></script>
+			<p>
+				Task:
+				<input type="text" id="task_description"><br>
+				Minutes:
+				<input type="text" id="minutes"><br>
+				Seconds:
+				<input type="text" id="seconds"><br>
+				<button type="button" onclick="getTime()">Set Time</button>
+			</p>
+
+			<p id="time_set">Timer not set</p>
+
+			<p id="time_left">Timer not set</p>
+
+			<p>
+				<button type="button" onclick="stopTimer()" style="visibility:hidden;" id="stop_button">Stop</button>
+				<button type="button" onclick="pauseTimer()" style="visibility:hidden;" id="pause_button">Pause</button>
+			</p>
+
+			Minute slice colour
+			<input type="color" name="minuteColour" id="minuteColour" value="#ff0000">
+			Second hand colour
+			<input type="color" name="secondColour" id="secondColour" value="#000000">
+			<button type="button" onclick="changeColour()" id="colour_button">Change</button>
+
+		</body>
+</html>
