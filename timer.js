@@ -113,8 +113,11 @@ function startTimer() {
 			var time_left = (Timer.minutes * 60) + Timer.seconds; // Time left in seconds
 			
 			if (time_left <= 0) {
+				Timer.seconds = 0; // For the timer to be drawn properly in the case of minutes and seconds both initially set to 0
 				clearInterval(Timer.timer);
 				document.getElementById("time_left").innerHTML = "Timed out";
+				document.getElementById("stop_button").style.visibility = "hidden";
+				document.getElementById("pause_button").style.visibility = "hidden";
 			} else {
 				if (Timer.seconds < 0) {
 					Timer.seconds = 59;
