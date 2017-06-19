@@ -1,8 +1,16 @@
 var canvas = document.getElementById("timerCanvas");
-canvas.width = 300;
-canvas.height = 300;
+canvas.width = 350;
+canvas.height = 350;
+var maxLength = $(window).width() < $(window).height() ? $(window).width() : $(window).height();
+if ((maxLength - 50) > 0) {
+	maxLength = maxLength - 50;
+}
+console.log('maxLength ' + maxLength);
+if (canvas.width > maxLength) {
+	canvas.width = maxLength;
+	canvas.height = maxLength; 
+}
 var ctx = canvas.getContext("2d");
-
 var Timer = new TimerObj();
 drawTimer();
 
@@ -12,9 +20,12 @@ https://code.tutsplus.com/tutorials/how-to-draw-a-pie-chart-and-doughnut-chart-u
 function drawTimer() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+	// ctx.lineCap = 'round';
+	// ctx.lineWidth = 1.5;
+
 	centreX = canvas.width / 2;
 	centreY = canvas.height / 2;
-	radius = 100;
+	radius = canvas.width / 2 - 2;
 	startAngle = 0;
 	endAngle = 2*Math.PI;
 
@@ -22,8 +33,6 @@ function drawTimer() {
 	ctx.beginPath();
 	ctx.arc(centreX, centreY, radius, startAngle, endAngle);
 	ctx.stroke();
-
-	drawMarkings();
 
 	// Draw minutes slice 
 	startAngle = 1.5*Math.PI;
@@ -35,6 +44,8 @@ function drawTimer() {
 	ctx.arc(centreX, centreY, radius, startAngle, endAngle);
 	ctx.closePath();
 	ctx.fill();
+
+	drawMarkings();
 
 	// Draw seconds hand 
 	secondsAngle = (2*Math.PI / 60 * Timer.seconds) - 0.5*Math.PI;
@@ -50,14 +61,16 @@ function drawTimer() {
 
 // Draw the minute markings on the clock face 
 function drawMarkings() {
+	var fiveMinInterval = (canvas.width / 2) / 9;
+	var oneMinInterval = (canvas.width / 2) / 20;
 	for (var i = 0; i < 60; ++i) {
 		var angle = (2*Math.PI / 60 * i);
 		if (i%5 === 0) { // Draw the 5 minute interval markings longer 
-			var start_from_x = centreX + ((radius - 15) * Math.cos(angle));
-			var start_from_y = centreY + ((radius - 15) * Math.sin(angle));
+			var start_from_x = centreX + ((radius - fiveMinInterval) * Math.cos(angle));
+			var start_from_y = centreY + ((radius - fiveMinInterval) * Math.sin(angle));
 		} else {
-			var start_from_x = centreX + ((radius - 5) * Math.cos(angle));
-			var start_from_y = centreY + ((radius - 5) * Math.sin(angle));
+			var start_from_x = centreX + ((radius - oneMinInterval) * Math.cos(angle));
+			var start_from_y = centreY + ((radius - oneMinInterval) * Math.sin(angle));
 		}
 		var end_at_x = centreX + (radius * Math.cos(angle));
 		var end_at_y = centreY + (radius * Math.sin(angle));

@@ -1,33 +1,49 @@
 <!DOCTYPE html>
 <html>
-	<head></head>
-		<body>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Timer</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/timer.css" rel="stylesheet">
+	</head>
+	<body>
+		<!-- <div class="container-fluid"> -->
 			<canvas id="timerCanvas"></canvas>
-			<script src="timer.js"></script>
-			<p>
-				Task:
-				<input type="text" id="task_description"><br>
-				Minutes:
-				<input type="text" id="minutes"><br>
-				Seconds:
-				<input type="text" id="seconds"><br>
-				<button type="button" onclick="getTime()">Set Time</button>
-			</p>
 
-			<p id="time_set">Timer not set</p>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	    <script src="js/bootstrap.min.js"></script>
+			<script src="js/timer.js"></script>
 
-			<p id="time_left">Timer not set</p>
+			<div class="row">
+				<div class="col-xs-8 col-xs-offset-2">
+					<p>
+						<label for="task_description">Task</label>
+						<input type="text" id="task_description"><br>
+						<label for="minutes">Minutes</label>
+						<input type="text" id="minutes">
+						<label for="seconds">Seconds</label>
+						<input type="text" id="seconds">
+						<button type="button" onclick="getTime()">Set Time</button>
+					</p>
 
-			<p>
-				<button type="button" onclick="stopTimer()" style="visibility:hidden;" id="stop_button">Stop</button>
-				<button type="button" onclick="pauseTimer()" style="visibility:hidden;" id="pause_button">Pause</button>
-			</p>
+					<p id="time_set">Timer not set</p>
 
-			Minute slice colour
-			<input type="color" name="minuteColour" id="minuteColour" value="#ff0000">
-			Second hand colour
-			<input type="color" name="secondColour" id="secondColour" value="#000000">
-			<button type="button" onclick="changeColour()" id="colour_button">Change</button>
+					<p id="time_left">Timer not set</p>
 
-		</body>
+					<p>
+						<button type="button" onclick="stopTimer()" style="visibility:hidden;" id="stop_button">Stop</button>
+						<button type="button" onclick="pauseTimer()" style="visibility:hidden;" id="pause_button">Pause</button>
+					</p>
+
+					Minute slice colour
+					<input type="color" name="minuteColour" id="minuteColour" value="#ff0000">
+					Second hand colour
+					<input type="color" name="secondColour" id="secondColour" value="#000000">
+					<button type="button" onclick="changeColour()" id="colour_button">Change</button>
+				</div>
+			</div>
+		<!-- </div> -->
+	</body>
 </html>
